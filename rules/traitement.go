@@ -12,5 +12,16 @@ func Traitement(texte string) string{
 
 func traitementLigne(ligne string) string{
 	mots := strings.Fields(ligne)
-	return strings.Join(mots, " ")
+	var resultat []string
+	for _,mot := range mots{
+		switch mot{
+		case "(hex)":
+			ConvertLast(resultat,16)
+		case "(bin)":
+			ConvertLast(resultat,2)
+		default:
+			resultat = append(resultat, mot)
+		}
+	}
+	return strings.Join(resultat, " ")
 }

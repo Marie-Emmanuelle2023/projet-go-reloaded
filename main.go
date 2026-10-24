@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go-reloaded/rules"
 	"os"
 )
 
@@ -17,7 +18,8 @@ func main() {
 		return
 	}
 
-	err = os.WriteFile(os.Args[2], contenu, 0644)
+	resultat := rules.Traitement(string(contenu))
+	err = os.WriteFile(os.Args[2], []byte(resultat), 0644)
 	if err != nil {
 		fmt.Println("Erreur d'écriture :", err)
 	}

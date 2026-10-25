@@ -2,6 +2,7 @@ package rules
 
 import "strings"
 
+// FixPonctuation colle la ponctuation au mot précédent
 func FixPonctuation(mots []string) []string {
 	var resultat []string
 	for _, mot := range mots {
@@ -18,6 +19,7 @@ func FixPonctuation(mots []string) []string {
 	return resultat
 }
 
+// countPonctuation compte les signes de ponctuation au début du mot
 func countPonctuation(mot string) int {
 	n := 0
 	for n < len(mot) && strings.ContainsRune(".,!?:;", rune(mot[n])) {

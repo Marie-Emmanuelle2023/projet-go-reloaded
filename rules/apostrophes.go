@@ -1,5 +1,6 @@
 package rules
 
+// FixApostrophes colle chaque paire d'apostrophes aux mots qu'elle entoure
 func FixApostrophes(mots []string) []string {
 	var resultat []string
 	ouverte := false

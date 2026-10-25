@@ -32,5 +32,6 @@ func traitementLigne(ligne string) string{
 			resultat = append(resultat, mot)
 		}
 	}
+	FixArticles(resultat)
 	return strings.Join(resultat, " ")
 }

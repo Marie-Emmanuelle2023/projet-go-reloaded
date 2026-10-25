@@ -32,6 +32,7 @@ func traitementLigne(ligne string) string{
 			resultat = append(resultat, mot)
 		}
 	}
+	resultat = FixApostrophes(resultat)
 	resultat = FixPonctuation(resultat)
 	FixArticles(resultat)
 	return strings.Join(resultat, " ")

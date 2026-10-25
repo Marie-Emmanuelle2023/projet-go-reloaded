@@ -1,13 +1,13 @@
 package rules
 
-import(
+import (
 	"strconv"
 	"strings"
 	"unicode"
 )
 
-func Capitalize(mot string) string{
-	if mot == ""{
+func Capitalize(mot string) string {
+	if mot == "" {
 		return mot
 	}
 	lettres := []rune(strings.ToLower(mot))
@@ -15,14 +15,12 @@ func Capitalize(mot string) string{
 	return string(lettres)
 }
 
-
-func applyCase(mots []string, mode string, n int){
-	start := len(mots) - n
-	if start < 0{
-		start = 0
-	}
-	for i := start; i < len(mots); i++{
-		switch mode{
+func applyCase(mots []string, mode string, n int) {
+	for i := len(mots) - 1; i >= 0 && n > 0; i-- {
+		if countPonctuation(mots[i]) == len(mots[i]) {
+			continue
+		}
+		switch mode {
 		case "up":
 			mots[i] = strings.ToUpper(mots[i])
 		case "low":
@@ -30,15 +28,16 @@ func applyCase(mots []string, mode string, n int){
 		case "cap":
 			mots[i] = Capitalize(mots[i])
 		}
+		n--
 	}
 }
 
 func applyCaseN(mots []string, tag string, count string) bool {
-	if !strings.HasSuffix(count, ")"){
+	if !strings.HasSuffix(count, ")") {
 		return false
 	}
 	n, err := strconv.Atoi(strings.TrimSuffix(count, ")"))
-	if err != nil || n < 0{
+	if err != nil || n < 0 {
 		return false
 	}
 	applyCase(mots, tag[1:len(tag)-1], n)
